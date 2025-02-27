@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+Login
+{% endblock title%}
+{% block body %}
+{% tailwind_css %}  
+
+{% if error == "no" %}
+<script>
+    alert('Logged In Successfully');
+    window.location=('{% url 'profile' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Credentials , Try Again');
+</script>
+{% endif %}
+<section class="bg-gray-50 dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto flex justify-center items-center lg:py-16">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <img class="mx-auto h-10 w-auto" src="https://www.svgrepo.com/show/301692/login.svg" alt="Workflow">
+            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-white">
+                Log in to your account
+            </h2>
+        <form class="mt-8 space-y-6 bg-red" action="/userlogin" method="post">                   {% csrf_token %}  
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email ID</label>
+                    <input type="Email" name="emailID" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter EmailID" required />
+                </div>
+                <div>
+                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                    <input type="password" name="pwd" id="password" placeholder="Enter your Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                </div> 
+                <div class="flex items-start">
+                    <div class="ms-3 text-sm">
+                    </div>
+                </div>
+                    <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                    <div class="text-sm font-medium text-gray-900 dark:text-white">
+                        Not registered yet? <a href="/createaccount" class="text-blue-600 hover:underline dark:text-blue-500">Create account</a>
+                </div>
+        </form>
+        </div>
+    </div>
+</section>
+
+  
+{% endblock body %}

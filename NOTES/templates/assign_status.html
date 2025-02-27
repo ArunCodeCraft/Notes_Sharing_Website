@@ -1,0 +1,57 @@
+{% include "admin_nav.html" %}
+<!doctype html>
+<html lang="en">
+  {% load static tailwind_tags %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %}{% endblock title%} | E-NotesPortal</title>
+    {% tailwind_css %}
+  </head>
+  <body>
+{% block body %}
+
+{% if error == "no" %}
+<script>
+    alert('Status Updated Successfull');
+    window.location=('{% url 'pending_notes' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , Try Again');
+</script>
+{% endif %}
+
+
+<section>
+    <div class="mt-10 mb-10 flex justify-center items-center">
+        <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                ASSIGN STATUS
+            </h2>
+            <HR>
+            <form class="mt-8 space-y-6" action="{% url 'assign_status' notes.id %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="notesid" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes ID</label>
+                    <input type="text" name="notesid" value="{{notes.id}}" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Notes ID" required />
+                </div>
+                 <div>
+                    <label for="assign status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assign Status</label>
+                    <select name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">---Select Status---</option>
+                        <option value="Accepted">Accepted</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+                <div class="flex items-start">
+                    <div class="ms-3 text-sm">
+                    </div>
+                </div class="mt-5">
+                <button type="submit" class="mt-8 mb-4 w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </div>
+    </div>
+</section>
+
+{% endblock body %}

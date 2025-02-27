@@ -1,0 +1,52 @@
+{% include "admin_nav.html"%}
+{%load static tailwind_tags%}
+{%tailwind_css%}
+{%block title%}
+{%endblock title%}
+{% block body %}
+<h2 class="text-4xl font-bold dark:text-gray-900">Help</h2>
+<div class="p-8 overflow-auto relative">
+    <table class="w-full border-collapse border outline outline-1 outline-gray-400 overflow-hidden text-center rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr> 
+                <th scope="col" class="px-6 py-3">
+                    Serial No.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    UpLoading date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Subject
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Message
+                </th>
+            </tr>
+        </thead>
+        {% for i in help %} 
+        <tbody>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-900">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                    {{forloop.counter}}
+                </th>
+                <td class="px-6 py-4">
+                    {{i.uploadingdate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.email}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.subject}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.message}}
+                </td>
+            </tr>
+        </tbody>
+            {% endfor %}
+    </table>
+</div>
+{%endblock body%}

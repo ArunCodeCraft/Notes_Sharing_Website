@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %} 
+{% block title %}
+Signup
+{% endblock title%}
+{% block body %}
+{% tailwind_css %}
+
+{% if error == "no" %}
+<script>
+    alert('Signup Successfull');
+    window.location=('{% url 'userlogin' %}');
+</script>x
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , Try Again');
+</script>
+{% endif %}
+<section class="bg-gray-50 dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div class=" text-sm flex flex-col justify-center">
+              <aside class="">
+                <div class="bg-gray-100 p-8 rounded text-white">
+                    <h2 class="font-extrabold text-2xl underline underline-offset-4">Create Your Account</h2>
+                    <ul class="list-disc mt-4 list-inside font-bold">
+                        <li>Welcome to our registration page!<br> Get started by creating your account.</li>
+                    </ul>
+                </div>
+            </aside>
+            <aside class="">
+                <div class="bg-gray-100 p-8 rounded text-white">
+                    <h2 class="font-extrabold text-2xl underline underline-offset-4">Simple & Secure Registration</h2>
+                    <ul class="list-disc mt-4 list-inside font-bold">
+                        <li>Our registration process is designed to be straightforward and secure.<br> We prioritize your privacy and data security.</li>
+                    </ul>
+                </div>
+            </aside>
+            <aside class="">
+                <div class="bg-gray-100 p-8 rounded text-white">
+                    <h2 class="font-extrabold text-2xl underline underline-offset-4">Instructions</h2>
+                    <ul class="list-disc mt-4 list-inside font-bold">
+                        <li>All users must provide a valid email address and password to create an account.</li>
+                        <li>Users must not use offensive,<br> vulgar, or otherwise inappropriate <br>language in their username or profile information</li>
+                        <li>Users must not create multiple accounts for the same person.</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <div class="sm:mx-auto sm:w-full sm:max-w-1/2">
+            <img class="mx-auto h-10 w-auto" src="https://www.svgrepo.com/show/301692/login.svg" alt="Workflow">
+            <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-white">
+                Create a new account
+            </h2>
+                    <form class="mt-8 space-y-6 grid grid-cols-2 gap-2" action="/createaccount" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                            <input type="name" name="firstname" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter First Name" required />
+                        </div>
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                            <input type="name" name="lastname" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Last Name" required />
+                        </div>
+                        <div>
+                            <label for="Contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
+                            <input type="name" name="contact" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Contact Number" required />
+                        </div>
+                        <div>
+                            <label for="Email ID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email ID</label>
+                            <input type="email" name="emailID" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Email ID" required />
+                        </div>
+                         <div>
+                            <label for="Are You ?" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Are you?</label>
+                            <select id="countries" name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Student</option>
+                                <option >Teacher</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="branch" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Branch</label>
+                            <select  name= "branch" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="IT">IT</option>
+                            </select> 
+                        </div>                    
+                        <div>
+                            <label for="password" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                            <input type="password" name="password" id="password" placeholder="Set Password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                        </div>
+                        <div>
+                        </div>
+                        <div>
+                            <button type="submit" class="mt-2 mb-4 w-full px-5 py-3 flex justify-center items-center text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create account</button>
+                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                Already have an account <a href="/userlogin" class="text-blue-600 hover:underline dark:text-blue-500">Login</a>
+                             </div>
+                        </div>
+                        
+                    </form>
+        </div>
+    </div>
+</section>
+{%endblock body%}

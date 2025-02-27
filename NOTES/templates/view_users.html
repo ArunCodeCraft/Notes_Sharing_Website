@@ -1,0 +1,94 @@
+{% include "admin_nav.html" %}
+<!doctype html>
+<html lang="en">
+  {% load static tailwind_tags %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %}{% endblock title%} | E-NotesPortal</title>
+    {% tailwind_css %} 
+  </head>
+  <body>
+{% block body %}
+
+{% if error == "no" %}
+<script>
+    alert('Notes Uploaded Successfull');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , Try Again');
+</script>
+{% endif %}
+
+<div class="p-6">
+    <h2 class="text-4xl font-bold text-gray-900 text-center">
+        <U>ALL USERS</U>
+    </h2>
+    
+<div class="p-6">
+<div class="p-8 overflow-auto relative">
+    <table class="w-full border-collapse border outline outline-1 outline-gray-400 overflow-hidden text-center sm:rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Serial.No
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    First Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Last Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Email id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Contact No.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Branch
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        {% for i in users %}
+    <tbody>
+        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                {{ forloop.counter }} <!-- Start from 1 -->
+            </td>
+            <td class="px-6 py-4">
+                {{ i.user.first_name }}
+            </td>
+            <td class="px-6 py-4">
+                {{ i.user.last_name }}
+            </td>
+            <td class="px-6 py-4">
+                {{ i.user.username }}
+            </td>
+            <td class="px-6 py-4">
+                {{ i.contact }}
+            </td>
+            <td class="px-6 py-4">
+                {{ i.branch }}
+            </td>
+            <td class="px-6 py-4">
+                {{ i.role }}
+            </td>
+            <td class="px-6 py-4">
+                <a href="{% url 'delete_users' i.user.id %}" onclick="return confirm('Are you sure?')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+{% endfor %}
+    </table>
+</div>
+</div>
+{% endblock body %}

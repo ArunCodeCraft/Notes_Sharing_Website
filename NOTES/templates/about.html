@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+About
+{% endblock title%}
+{% tailwind_css %}
+{% block body %}
+<div class="mb-10 bg-white">
+    <header class=" bg-green-500 text-gray-900 text-center py-12">
+      <h1 class="text-4xl font-bold mt-16 mb-10 underline underline-offset-4">About E-Notes Portal</h1>
+    </header>
+
+    <section class="text-center text-white bg-gray-900 py-24 px-4">
+      <h2 class="text-2xl font-bold underline underline-offset-4">Mission And Values</h2>
+      <p class="mt-4 text-gray-700 max-w-2xl font-bold mx-auto">
+         Our mission is to provide study notes to everyone to study more efficiently.<br>
+         The best documents shared by your fellow students, organized in one place
+      </p>
+    </section>
+    <section class="text-center py-12 px-4 w-full">
+        <div class="mt-8">
+          <div class="p-4 border bg-gray-900 rounded-lg shadow-md transition transform hover:scale-100 scale-90">
+            <h3 class="text-xl text-white font-bold">Study anytime, anywhere, on any device</h3>
+            <p class="mt-2 text-white">Because your planning is not always perfect, you need to be able to study whenever, wherever.</p>
+          </div>
+          <div class="p-4 border bg-gray-900  rounded-lg shadow-md transition transform hover:scale-100 scale-90 mt-4">
+            <h3 class="text-xl text-white font-bold">Everything you need to improve your grades</h3>
+            <p class="mt-2 text-white">Students share their study materials organised by course or by book.</p>
+          </div>
+          <div class="p-4 border bg-gray-900  rounded-lg shadow-md transition transform hover:scale-100 scale-90 mt-4">
+            <h3 class="text-xl text-white font-bold">Be An A+ Student</h3>
+            <p class="mt-2 text-white">We believe in sharing knowledge, continuously learning and challenging ourselves.</p>
+          </div>
+        </div>
+      </section>
+  </div>
+{% endblock body %}

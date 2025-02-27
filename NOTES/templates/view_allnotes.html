@@ -1,0 +1,79 @@
+{% include  "admin_nav.html" %}
+{% load static tailwind_tags %}
+{% block body %}
+{% tailwind_css %}
+
+<div class="p-6">
+<h2 class="text-4xl font-bold dark:text-gray-900 text-center"><U>ALL NOTES</U></h2>
+</div>
+
+<div class="p-8 overflow-auto relative">
+    <table class="w-full border-collapse border outline outline-1 outline-gray-400 overflow-hidden text-center rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr> 
+                <th scope="col" class="px-6 py-3">
+                    Serial.No
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Uploading Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Branch
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Subject
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Download Notes
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    File Types
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        {% for i in notes %} 
+        <tbody>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-900">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-gray-900">
+                    {{forloop.counter}}
+                </th>
+                <td class="px-6 py-4">
+                    {{i.uploadingdate}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.branch}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.subject}}
+                </td>
+                <td class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    <u><a href="{{i.notesfile.url}}" download>
+                    {{i.notesfile}}</u></a>
+                </td>
+                <td class="px-6 py-4">
+                    {{i.filetype}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.description}}
+                </td>
+                <td class="px-6 py-4">
+                    {{i.status}}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'delete_usernotes' i.id %}" onclick="return confirm('Are you sure ?')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+            {% endfor %}
+    </table>
+</div>
+{% endblock body%}

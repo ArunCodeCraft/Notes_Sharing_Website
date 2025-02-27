@@ -1,0 +1,90 @@
+{% extends "admin_nav.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+Admin
+{% endblock title%}
+{% tailwind_css %}
+{% block body %}
+
+<div class="mt-20">
+<div class=" mx-10 p-8 flex justify-center grid-cols-4 gap-12">
+    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="/pending_notes">
+        <h5  class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Pending Notes</h5>
+    </a>
+    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{pn}}</span>
+    <a href="/pending_notes" class="inline-flex items-center ml-16 px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        View
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+    </a>
+</div>
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="/rejected_notes">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Rejected Notes</h5>
+    </a>
+    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{rn}}</span>
+    <a href="/rejected_notes" class="inline-flex items-center ml-16 px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        View
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+    </a>
+</div>
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="/accepted_notes">
+        <h5   class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Accepted Notes</h5>
+    </a>
+    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{an}}</span>
+    <a href="/accepted_notes" class="inline-flex items-center ml-16 px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        View
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+    </a>
+    </div>
+    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a href="/view_allnotes">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">All Notes</h5>
+        </a>
+        <span class="text-3xl font-bold text-gray-900 dark:text-white">{{alln}}</span>
+        <a href="/view_allnotes" class="inline-flex items-center ml-16 px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            View
+            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+            </svg>
+        </a>
+        </div>
+</div>
+<footer class="bg-gray-900  shadow mt-40">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+              <svg class="w-[30px] h-[30px] text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7ZM8 16a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1-5a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
+              </svg>  
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">E-Notes Portal</span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0 dark:text-white">
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Terms of Use</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="/about" class="hover:underline me-4 md:me-6">About us</a>
+                </li>
+                <li>
+                    <a href="/contact" class="hover:underline">Contact</a>
+                </li>  
+            </ul>
+        </div>    
+        <hr class="my-6 border-white sm:mx-auto dark:border-white lg:my-8" />
+        <span class="block text-sm text-white sm:text-center dark:text-white">© 2024 <a href="https://flowbite.com/" class="hover:underline">E-Notes Portal</a>. All Rights Reserved.</span>
+    </div>
+  </footer>
+</div>
+
+{% endblock body %}

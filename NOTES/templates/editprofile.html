@@ -1,0 +1,126 @@
+{% include 'user_nav.html'%}
+{%load static%}
+<!doctype html>
+<html lang="en">
+  {% load static tailwind_tags %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> {% block title %}{% endblock title%} | E-NotesPortal</title>
+    {% tailwind_css %}
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+  </head>
+  <body>
+
+{% block body %}
+{% if error %}
+<script>
+    alert('Profile updated successfully');
+    window.location=('{% url 'profile' %}');
+</script>
+{% endif %}
+
+<div class="h-100">
+    <div class="mt-10 mb-10 flex justify-center items-center">
+        <div class=" h-full w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                EDIT PROFILE
+            </h2>
+            <HR>
+            <form class="mt-8 space-y-6" action="/editprofile" method="post">
+                {% csrf_token %}
+                <div class="flex space-x-4">
+                <div class="w-1/2 h-12">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                    <input type="text" name="firstname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.user.first_name}}">
+                </div>
+                <div class="w-1/2 h-12">
+                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                    <input type="text" name="lastname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.user.last_name}}">
+                </div>
+                </div>
+                <div>
+                    <label for="Contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
+                    <input type="name" name="contact" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.contact}}">
+                </div>
+                <div>
+                    <label for="Email ID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email ID *</label>
+                    <input type="email" name="EmailID" id="name" class="bg-gray-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.user.username}}" readonly>
+                </div>
+
+                 <div class="flex space-x-4">
+                    <div class="w-1/2 h-12">    
+                    <label for="Are You ?" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Are you?</label>
+                    <select name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">                      
+                        <option >Teacher</option>
+                        <option selected>Student</option>
+                    </select> 
+                    </div>
+                    <div class="w-1/2 h-1/2"> 
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">*</label>
+                        <input type="text" name="last name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.role}}">
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="w-1/2 h-12"> 
+                    <label for="branch" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Branch</label>
+                    <select  name= "branch" value="{{data.branch}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="IT">IT</option>
+                        <option value="IT">Mechanical</option>
+                    </select> 
+                    </div>   
+                    <div class="w-1/2 h-12"> 
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">*</label>
+                        <input type="text" name="last name" class="bg-gray-600 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{data.branch}}">
+                    </div>   
+                </div>
+                <div class="flex items-start">
+                    <div class="ms-3 text-sm ">
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <label class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">(*) Readonly </label>
+                </div>
+                <button type="submit" class="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+<footer class="bg-white  shadow">
+  <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+      <div class="sm:flex sm:items-center sm:justify-between">
+          <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+            <svg class="w-[30px] h-[30px] text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7ZM8 16a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1-5a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
+            </svg>  
+              <span class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900">E-Notes Portal</span>
+          </a>
+          <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-900 sm:mb-0 dark:text-gray-900">
+              <li>
+                  <a href="#" class="hover:underline me-4 md:me-6">Terms of Use</a>
+              </li>
+              <li>
+                  <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+              </li>
+              <li>
+                  <a href="/about" class="hover:underline me-4 md:me-6">About us</a>
+              </li>
+              <li>
+                  <a href="/contact" class="hover:underline">Contact</a>
+              </li>  
+          </ul>
+      </div>    
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <span class="block text-sm text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a href="https://flowbite.com/" class="hover:underline">E-Notes Portal</a>. All Rights Reserved.</span>
+  </div>
+</footer>
+    </body>
+</html>
